@@ -1,41 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart' show ChangeNotifierProvider;
+import 'screens/screen1.dart';
+import 'providers/data_provider.dart';
+import 'screens/screen2.dart';
+import 'screens/screen3.dart';
+import 'screens/screen4.dart';
+import 'screens/screen5.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      // Application name
-      title: 'Flutter Hello World',
-      // Application theme data, you can set the colors for the application as
-      // you want
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
+void main() {
+  runApp(MyApp());
 }
 
-class MyHomePage extends StatelessWidget {
-  final String title;
-  const MyHomePage({super.key, required this.title});  
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        // The title text which will be shown on the action bar
-        title: Text(title),
-      ),
-      body: Center(
-        child: Text(
-          'Hello, World!',
-        ),
+    return ChangeNotifierProvider(
+      create: (context) => DataProvider(),
+      child: MaterialApp(
+        title: 'HW3 App',
+        initialRoute: '/',
+        routes: {
+          '/': (context) => Screen1(),
+          '/screen2': (context) => Screen2(),
+          '/screen3': (context) => Screen3(),
+          '/screen4': (context) => Screen4(),
+          '/screen5': (context) => Screen5(),
+        },
       ),
     );
   }
